@@ -4,13 +4,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Step1 : Git Clone') {
-            steps {
-                git branch: "${params.Branch}",
-                credentialsId: 'my_git_cred',
-                url: 'https://github.com/BalajiMokara/java-maven.git'
-            }
-        }
+       // stage('Step1 : Git Clone') {
+        //    steps {
+        //        git branch: "${params.Branch}",
+         //       credentialsId: 'my_git_cred',
+          //      url: 'https://github.com/BalajiMokara/java-maven.git'
+           // }
+        //}
         stage('step 2: maven build'){
             steps{
                 script{
