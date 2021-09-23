@@ -29,11 +29,14 @@ pipeline {
         }
         stage('step :4 docker image build'){
             steps{
+                script{
+                
                // sh "docker build -t balaji22827/my-java-app:v1.0 ."
                 def targetVersion = getDevVersion()
                 echo "after func"
                 print 'target build version...'
                 print targetVersion
+                }
             }
         }
         stage('step:5 docker image push'){
@@ -48,7 +51,7 @@ pipeline {
        
     }
 }
-@NonCPS
+
 def getDevVersion() {
     echo "in func"
     def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
