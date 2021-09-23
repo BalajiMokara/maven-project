@@ -29,7 +29,11 @@ pipeline {
         }
         stage('step :4 docker image build'){
             steps{
-                sh "docker build -t balaji22827/my-java-app:v1.0 ."
+               // sh "docker build -t balaji22827/my-java-app:v1.0 ."
+                def targetVersion = getDevVersion()
+                echo "after func"
+                print 'target build version...'
+                print targetVersion
             }
         }
         stage('step:5 docker image push'){
@@ -43,4 +47,17 @@ pipeline {
         }
        
     }
+}
+def getDevVersion() {
+    echo "in func"
+    def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    def versionNumber;
+    if (gitCommit == null) {
+        versionNumber = env.BUILD_NUMBER;
+    } else {
+        versionNumber = gitCommit.take(8);
+    }
+    print 'build  versions...'
+    print versionNumber
+    return versionNumber
 }
