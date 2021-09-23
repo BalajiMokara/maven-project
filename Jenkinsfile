@@ -31,7 +31,7 @@ pipeline {
             steps{
                 script{
                 
-               // sh "docker build -t balaji22827/my-java-app:v1.0 ."
+                sh "docker build -t balaji22827/my-java-app:v1.0 ."
                 def targetVersion = getDevVersion()
                 echo "after func"
                 print 'target build version...'
